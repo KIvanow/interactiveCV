@@ -348,6 +348,18 @@ Character.prototype.attack = function( type ){
 	}
 };
 
+Character.prototype.combo = function( type ){
+	if( this.jumping )
+		return;
+	
+	this.moving = false;
+	this.stop();
+
+	this.attacking = true;	
+	this.events.attack.dispatch( type );
+this.play( 'combo');
+};
+
 Character.prototype.createMovieClips = function() {	
 	for( var i in this.animations ){
 		var anim = [];

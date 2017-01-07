@@ -3,6 +3,7 @@ var LevelSplash = function( stage ){
 	this.levelSplashContainer = new PIXI.Container();
 
 	this.events = {
+		start: new Signal(),
 		shown: new Signal(),
 		hidden: new Signal(),
 		optionChosen: new Signal(),
@@ -109,7 +110,7 @@ LevelSplash.prototype.createTexts = function( source, addListeners ){
 
 LevelSplash.prototype.show = function( level ) {
 	this.shown = level;
-	
+	this.events.start.dispatch();
 	if( level === parseInt( level, 10 ) ){
 		this.createTexts( this.levelTexts[ level ] );
 	} else {

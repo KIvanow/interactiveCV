@@ -15,7 +15,7 @@ var SoundManager = function( game ){
 	}.bind(this));
 
 	game.navigation.events.buttonPressed.add( function( button ){
-		var excluded = [ 'up', 'down', 'left', 'right'];
+		var excluded = [ 'up', 'down', 'left', 'right', 'a', 'b'];
 		if( !!~excluded.indexOf( button ) )
 			return;
 		this.player.play( 'button_click' );
@@ -30,7 +30,7 @@ var SoundManager = function( game ){
 	}.bind(this));
 
 	game.mainCharacter.events.attack.add( function(){
-		this.player.play( 'attack' + randInRange( 1, 3 ) );
+		this.player.play( 'attack1' );
 	}.bind(this));
 
 	game.events.levelCompleted.add( function(){

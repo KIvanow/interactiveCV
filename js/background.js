@@ -2,6 +2,12 @@ var Background = function( stage ){
 	this.filter = new PIXI.filters.PixelateFilter();
 	this.pixelateSize = window.innerHeight / 10;
 	this.filter.size = { x: this.pixelateSize, y: this.pixelateSize};
+	
+	if( isMobile ){
+		for( var i in config.ground.elements ){
+			config.ground.elements[i].height / 2;
+		}
+	}
 
 	this.container = new PIXI.Container();
 	stage.addChild( this.container );

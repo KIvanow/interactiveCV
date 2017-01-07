@@ -7,8 +7,11 @@ var Navigation = function( stage ){
 
 	this.events = {
 		buttonPressed: new Signal(),
-		buttonUnPressed: new Signal()
-	}
+		buttonUnPressed: new Signal(),
+		combo: new Signal(),
+	};
+	
+	this.presses = [];
 
 	this.buttons = {};
 
@@ -131,6 +134,41 @@ var Navigation = function( stage ){
 
 	this.addDesktopListeners();
 	this.disableAtacks();
+	this.trackCombos();
+};
+
+Navigation.prototype.trackCombos = function(){
+	this.pressed = false;	
+	var matches = 0;
+	this.events.buttonPressed.add( function( key ){
+		if( this.pressed )
+			return;
+		if( new Date() - this.lastTimestamp > 1000 ){
+			this.presses.length = 0;
+		}
+		
+		var temp = this.presses.slice( 0 );			
+		this.lastTimestamp = new Date();	
+		this.pressed = true;
+		this.presses.push( key );
+		
+		configLoop:
+		for( var i in config.combos ){
+		    var y = 0;	         	
+		        
+		        if( temp.length >= config.combos[i].length && !!~temp.join().indexOf( config.combos[i].join() )){
+		            this.presses.length = 0;
+		            temp.length = 0;
+		            this.events.combo.dispatch( i );
+		            break configLoop;
+		        }		    
+		}
+	}.bind(this));
+	this.events.buttonUnPressed.add( function( key ){
+	//can possibly lead to false positive since I don't track which button is pressed and just resset the flag. For now it should be ok
+		this.pressed = false;
+		
+	}.bind(this));
 };
 
 Navigation.prototype.hide = function(){
@@ -153,8 +191,8 @@ Navigation.prototype.enableAttacks = function(){
 
 Navigation.prototype.addDesktopListeners = function(){
 	window.addEventListener("keyup", function(e){	
-		if(e.keyCode === 37) {
-			this.events.buttonUnPressed.dispatch( 'left' );
+	    if(e.keyCode === 37) {
+		this.events.buttonUnPressed.dispatch( 'left' );
 	    } else if( e.keyCode === 39 ){
            	 this.events.buttonUnPressed.dispatch( 'right' );
 	    } else if( e.keyCode === 38 ){
@@ -175,7 +213,7 @@ Navigation.prototype.addDesktopListeners = function(){
         // e.preventDefault();    
         console.log( e.keyCode );    
 	    if(e.keyCode === 37) {
-			this.events.buttonPressed.dispatch( 'left' );
+		this.events.buttonPressed.dispatch( 'left' );
 	    } else if( e.keyCode === 39 ){
            	 this.events.buttonPressed.dispatch( 'right' );
 	    } else if( e.keyCode === 38 ){

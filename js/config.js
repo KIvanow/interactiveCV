@@ -25,10 +25,14 @@ var config = {
 		minCircleRadius: 10,
 		maxCircleRadius: 20
 	},
+	combos: {
+		special: [ 'a', 'a', 'a' ],
+	},
+	maximumComboDelay: 500,
   	sound:{
 		resources: [
 			"sounds/all.ogg",
-    		"sounds/all.mp3",    		
+    			"sounds/all.mp3",    		
 		],
 		spritemap: {
 			attack1: {
@@ -59,14 +63,19 @@ var config = {
 			death: {
 				start: 12,
 				end: 14,
-				loop: false
+				loop: false,
+				effects: {
+					volume: 0.6,
+					fadeIn: 0.2,
+					fadeOut: 0.2,
+				}
 			},
 			deathZombie: {
 				start: 15,
 				end: 17,
 				loop: false,
 				effects: {
-					volume: 0.8,
+					volume: 0.6,
 					fadeIn: 0.2,
 					fadeOut: 0.2,
 				}

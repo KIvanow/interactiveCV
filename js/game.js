@@ -82,30 +82,7 @@ Game.prototype.init = function(){
 
 
 Game.prototype.animate = function() {
-	for( var i in this.enemies ){
-		if( this.mainCharacter.objectInFront( this.enemies[i] ) ){			
-			if( this.mainCharacter.attacking && checkIntersection( this.mainCharacter.getPolygons().hitArea, this.enemies[i].getPolygons().attackArea) ){
-				this.enemies[i].die();
-				this.enemies.splice( i, 1 );
-				this.score.value++;
-				if( this.score.value >= this.getLevelsRequirements() ){
-					this.changeLevel( this.level + 1 );
-				}
-			} 
-		} 
-		if( this.enemies[i] && this.enemies[i].objectInFront( this.mainCharacter ) ){
-			if( this.enemies[i] && this.enemies[i].type && !this.enemies[i].dead ){
-				if( (this.enemies[i].type.name == 'sentient' || this.enemies[i].type.name == 'mad' )
-					&& this.enemies[i].attacking && checkIntersection( this.enemies[i].getPolygons().attackArea, this.mainCharacter.getPolygons().hitArea) ){
-					this.mainCharacter.die( this.enemies[i].type.name );
-				}
-				if( this.enemies[i].type.name == 'zombie' && checkIntersection( this.enemies[i].getPolygons().hitArea, this.mainCharacter.getPolygons().hitArea) ){
-					this.mainCharacter.die( this.enemies[i].type.name );
-				}
-			}
-		}		
-		// console.log( this.mainCharacter.checkIntersection( this.enemies[i].getPolygonPoints() ) )
-	}
+	this.checkEnemies();
 
 	this.checkLevelRequirements();
 
@@ -157,6 +134,10 @@ Game.prototype.addListeners = function(){
 	this.navigation.events.buttonUnPressed.add( function( buttonId ){	
 		this.moving = false;	
 		this.mainCharacter.stop();
+	}.bind(this));
+	
+	this.navigation.events.combo.add( function( comboId ){
+		this.mainCharacter.combo( comboId );
 	}.bind(this));
 
 
@@ -295,6 +276,33 @@ Game.prototype.changeLevel = function( level ){
 
 		this.mainCharacter.stop();		
 	} 		
+};
+
+Game.prototype.checkEnemies = function(){
+	for( var i in this.enemies ){
+		if( this.mainCharacter.objectInFront( this.enemies[i] ) ){			
+			if( this.mainCharacter.attacking && checkIntersection( this.mainCharacter.getPolygons().hitArea, this.enemies[i].getPolygons().attackArea) ){
+				this.enemies[i].die();
+				this.enemies.splice( i, 1 );
+				this.score.value++;
+				if( this.score.value >= this.getLevelsRequirements() ){
+					this.changeLevel( this.level + 1 );
+				}
+			} 
+		} 
+		if( this.enemies[i] && this.enemies[i].objectInFront( this.mainCharacter ) ){
+			if( this.enemies[i] && this.enemies[i].type && !this.enemies[i].dead ){
+				if( (this.enemies[i].type.name == 'sentient' || this.enemies[i].type.name == 'mad' )
+					&& this.enemies[i].attacking && checkIntersection( this.enemies[i].getPolygons().attackArea, this.mainCharacter.getPolygons().hitArea) ){
+					this.mainCharacter.die( this.enemies[i].type.name );
+				}
+				if( this.enemies[i].type.name == 'zombie' && checkIntersection( this.enemies[i].getPolygons().hitArea, this.mainCharacter.getPolygons().hitArea) ){
+					this.mainCharacter.die( this.enemies[i].type.name );
+				}
+			}
+		}		
+		// console.log( this.mainCharacter.checkIntersection( this.enemies[i].getPolygonPoints() ) )
+	}
 };
 
 Game.prototype.checkLevelRequirements = function(){

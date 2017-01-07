@@ -93,6 +93,10 @@ Remarks.prototype.addListeners = function(){
 	this.game.events.gameOver.add( function(){
 		this.hide();
 	}.bind(this));
+	
+	this.game.levelSplash.events.start.add( function(){
+		this.hide();
+	}.bind(this));
 
 	// this.game.events.enemyDied.add( function(){
 	// 	if( this.game.levelSplash.shown )
