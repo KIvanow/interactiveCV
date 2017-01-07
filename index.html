@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<meta name="theme-color" content="#6a4aaf" />
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<script src="js/libs/pixi.js"></script>
+<script src="js/config.js"></script>
+<script src="js/libs/pixijsFilters.js"></script>
+<script src="js/libs/TweenMax.min.js"></script>
+<script src="js/libs/signal.js"></script>
+
+<script src="js/utils.js"></script>
+
+<script src="js/webAudioPlayer.js"></script>
+<script src="js/audioWrapper.js"></script>
+<script src="js/soundManager.js"></script>
+
+<script src="js/levelSplash.js"></script>
+<script src="js/remarks.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/score.js"></script>
+<script src="js/character.js"></script>
+<script src="js/background.js"></script>
+<script src="js/game.js"></script>
+
+<!-- <script data-main="./js/app.js" src="./js/libs/require.js"></script> -->
+
+<!-- <script src="js/scenario.js"></script> -->
+<div id="orientationWarning"></div>
+</body>
+</html>
+
+<!-- 
+	#README
+
+	TODO:
+		wrap components as requireJS modules
+		clean up game.js logic
+		clean up the character.js
+		restart to be more than simple refresh 
+		fix bug in some browsers /Samsung Galaxy S3 Chrome, HTC One Chrome/ with the multilayerd background
+		handle bugs with page focus lost, suspended browsers, etc.
+
+	Things I am NOT proud of:
+		how the level requirements are tested
+		how the remarks functionality works
+
+	Things I AM proud of:
+		The dynamically generated background
+		The dynamically generated clouds
+		parts of the enemy behaviour
+
+	Resources used
+		character animation
+			http://opengameart.org/content/cat-fighter-sprite-sheet
+		sounds in no particullar order
+			http://soundbible.com/1726-Karate-Kid-Punch.html
+			http://soundbible.com/1414-Batman-Punch.html
+			http://soundbible.com/995-Jab.html
+			http://soundbible.com/1454-Pain.html
+			http://soundbible.com/1033-Zombie-In-Pain.html
+ -->

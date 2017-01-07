@@ -1,0 +1,58 @@
+{
+  "resources": [
+    "all.mp3",
+    "all.ogg"
+  ],
+  "spritemap": {
+    "attack1": {
+      "start": 0,
+      "end": 2,
+      "loop": false
+    },
+    "attack2": {
+      "start": 3,
+      "end": 5,
+      "loop": false
+    },
+    "attack3": {
+      "start": 6,
+      "end": 6.270975056689342,
+      "loop": false
+    },
+    "button_click": {
+      "start": 8,
+      "end": 8.70530612244898,
+      "loop": false
+    },
+    "completetask_0": {
+      "start": 10,
+      "end": 10.687505668934241,
+      "loop": false
+    },
+    "death": {
+      "start": 12,
+      "end": 14,
+      "loop": false
+    },
+    "deathZombie": {
+      "start": 15,
+      "end": 17,
+      "loop": false
+    },
+    "gameLooseSound2": {
+      "start": 18,
+      "end": 20.56,
+      "loop": false
+    },
+    "hardRock": {
+      "start": 22,
+      "end": 149.16408163265305,
+      "loop": false
+    },
+    "om": {
+      "start": 151,
+      "end": 153.0527664399093,
+      "loop": false
+    }
+  }
+}

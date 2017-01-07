@@ -1,0 +1,37 @@
+*{
+	padding: 0;
+	margin: 0;
+
+	-webkit-transition-duration: 250ms;
+	-moz-transition-duration: 250ms;
+	-o-transition-duration: 250ms;
+	transition-duration: 250ms;	
+
+	display: block;
+    position: absolute;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    /*background-color: #1099bb;*/
+    background: #6a4aaf; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( #6a4aaf, #6a4aaf, #ba49b2, #d17b55 ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( #6a4aaf, #6a4aaf, #ba49b2, #d17b55 ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( #6a4aaf, #6a4aaf, #ba49b2, #d17b55 ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( #6a4aaf, #6a4aaf, #ba49b2, #d17b55 ); /* Standard syntax */
+}
+
+#orientationWarning{
+    font-size: 1.5em;
+    text-align: center;
+    position: absolute;
+    margin-top: 0.5em;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+    font-family: sans-serif;
+    color: rgba( 255, 255, 255, 0.65);
+    top: 0;
+    /*margin-top: 50%;*/
+}
