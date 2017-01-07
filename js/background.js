@@ -36,8 +36,12 @@ Background.prototype.addSky = function(){
 
 	this.createCloud();	
 	setTimeout( function(){
+		setTimeout( function(){
+			this.createCloud();
+		}.bind(this), 1200 );
+		
 		this.createCloud();
-	}.bind(this), 3500 );
+	}.bind(this), 1200 );
 };
 
 Background.prototype.createCloud = function(){	
@@ -48,7 +52,6 @@ Background.prototype.createCloud = function(){
 	for( var i = 0; i < numberOfCircles; i++ ){
 		cloudParts[i] = new PIXI.Graphics();
 		cloudParts[i].beginFill( 0xFFFFFF, alpha );
-		console.log( alpha );
 		cloudParts[i].drawCircle(0, 0, randInRange( config.sky.minCircleRadius, config.sky.maxCircleRadius ) );
 		cloudParts[i].endFill();
 		cloudParts[i].x = cloudParts[i - 1] ? randInRange( cloudParts[i-1].x, cloudParts[i-1].x + cloudParts[i].width / 2.2 ) : 0;
@@ -58,7 +61,6 @@ Background.prototype.createCloud = function(){
 	cloud.x = -cloud.width;
 	cloud.y = randInRange( cloud.height, cloud.height * 2);
 	cloud.cacheAsBitmap = true;
-	console.log( cloud.alpha );
 	cloud.filters = [ this.filter ];	
 	this.skyContainer.addChild( cloud );
 
